@@ -13,13 +13,17 @@ for keyword in keywords:
     try:
         API_Link = 'https://shop.sprouts.com/api/v2/store_products?ads_enabled=true&ads_pagination_improvements=true&allow_autocorrect=true&limit=60&offset=0&search_is_autocomplete=true&search_provider=buffet&search_term='+keyword.replace(' ','+')+'&secondary_results=false&sort=rank&unified_search_shadow_test_enabled=false'
         response = requests.get(API_Link, headers=headers)
-        print(API_Link)
+        # print(API_Link)
         # print(response.status_code)
         data = response.json()
+        print(data['items'][0])
+        """
         if int(data['item_count'])!=0:
             for i in range(int(data['item_count'])):
                 print(data['items'][i]['name'])
+                print(data['items'][i]['base_price'])
         else:
             print("no results found")
+        """
     except:
         print("API Error (change cookies or check api link)")
